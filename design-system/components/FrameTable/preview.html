@@ -1,0 +1,43 @@
+<!-- @dsCard group="Data" height=320 subtitle="The live monitor's frame table with a selected row" -->
+<div class="cde-root" style="display:grid;grid-template-columns:1fr 1fr;min-height:320px;">
+  <style>
+    .ft-pane { padding:var(--space-8); background:var(--surface); min-width:0; }
+    .ft-wrap { overflow-x:auto; border:1px solid var(--line-strong); border-radius:var(--radius-3); }
+    .ft-head { display:flex; align-items:center; gap:var(--space-4); padding:var(--space-3) var(--space-6); border-bottom:1px solid var(--line); font:600 12px/16px var(--font-sans); color:var(--ink); background:var(--surface); }
+    .ft-head .cnt { margin-left:auto; font:400 11px/16px var(--font-mono); color:var(--ink-muted); }
+  </style>
+  <div class="ft-pane">
+    <div class="ft-wrap">
+      <div class="ft-head"><span class="cde-dot cde-dot--ok cde-dot--live"></span>can0 · Skoda Superb 2024<span class="cnt">14 169 frames</span></div>
+      <table class="cde-frames">
+        <thead><tr><th>Time</th><th>If</th><th>ID</th><th>DLC</th><th></th><th>Payload</th><th>Decoded</th></tr></thead>
+        <tbody>
+          <tr><td class="c-time">09:40:26.489</td><td class="c-if">can0</td><td class="c-id">7E0</td><td class="c-dlc">8</td><td class="c-dir">→</td><td class="cde-bytes"><span class="b-sid">02 10</span> 03 <span class="b-pad">AA AA AA AA AA</span></td><td class="c-decoded"><b>DiagnosticSessionControl</b> extended</td></tr>
+          <tr aria-selected="true"><td class="c-time">09:40:26.586</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">06 <span class="b-pos">50 03</span> 00 32 <span class="b-hl">01 F4</span> <span class="b-pad">AA</span></td><td class="c-decoded"><b>positive</b> P2* 5000 ms</td></tr>
+          <tr><td class="c-time">09:40:26.612</td><td class="c-if">can0</td><td class="c-id">7E0</td><td class="c-dlc">8</td><td class="c-dir">→</td><td class="cde-bytes"><span class="b-sid">03 22</span> F1 90 <span class="b-pad">AA AA AA AA</span></td><td class="c-decoded"><b>ReadDataByIdentifier</b> 0xF190 VIN</td></tr>
+          <tr><td class="c-time">09:40:26.640</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">10 14 <span class="b-pos">62</span> F1 90 54 4D 42</td><td class="c-decoded">ISO-TP first frame, 20 bytes</td></tr>
+          <tr><td class="c-time">09:40:26.641</td><td class="c-if">can0</td><td class="c-id">7E0</td><td class="c-dlc">8</td><td class="c-dir">→</td><td class="cde-bytes">30 00 00 <span class="b-pad">AA AA AA AA AA</span></td><td class="c-decoded">flow control, continue</td></tr>
+          <tr><td class="c-time">09:40:26.655</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">21 4A 4E 30 4E 5A 37 52</td><td class="c-decoded">consecutive 1</td></tr>
+          <tr><td class="c-time">09:40:27.102</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">03 <span class="b-nrc">7F 10 78</span> <span class="b-pad">AA AA AA AA</span></td><td class="c-decoded"><b>NRC 0x78</b> response pending</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="ft-pane" data-theme="dark">
+    <div class="ft-wrap">
+      <div class="ft-head"><span class="cde-dot cde-dot--ok cde-dot--live"></span>can0 · Skoda Superb 2024<span class="cnt">14 169 frames</span></div>
+      <table class="cde-frames">
+        <thead><tr><th>Time</th><th>If</th><th>ID</th><th>DLC</th><th></th><th>Payload</th><th>Decoded</th></tr></thead>
+        <tbody>
+          <tr><td class="c-time">09:40:26.489</td><td class="c-if">can0</td><td class="c-id">7E0</td><td class="c-dlc">8</td><td class="c-dir">→</td><td class="cde-bytes"><span class="b-sid">02 10</span> 03 <span class="b-pad">AA AA AA AA AA</span></td><td class="c-decoded"><b>DiagnosticSessionControl</b> extended</td></tr>
+          <tr aria-selected="true"><td class="c-time">09:40:26.586</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">06 <span class="b-pos">50 03</span> 00 32 <span class="b-hl">01 F4</span> <span class="b-pad">AA</span></td><td class="c-decoded"><b>positive</b> P2* 5000 ms</td></tr>
+          <tr><td class="c-time">09:40:26.612</td><td class="c-if">can0</td><td class="c-id">7E0</td><td class="c-dlc">8</td><td class="c-dir">→</td><td class="cde-bytes"><span class="b-sid">03 22</span> F1 90 <span class="b-pad">AA AA AA AA</span></td><td class="c-decoded"><b>ReadDataByIdentifier</b> 0xF190 VIN</td></tr>
+          <tr><td class="c-time">09:40:26.640</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">10 14 <span class="b-pos">62</span> F1 90 54 4D 42</td><td class="c-decoded">ISO-TP first frame, 20 bytes</td></tr>
+          <tr><td class="c-time">09:40:26.641</td><td class="c-if">can0</td><td class="c-id">7E0</td><td class="c-dlc">8</td><td class="c-dir">→</td><td class="cde-bytes">30 00 00 <span class="b-pad">AA AA AA AA AA</span></td><td class="c-decoded">flow control, continue</td></tr>
+          <tr><td class="c-time">09:40:26.655</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">21 4A 4E 30 4E 5A 37 52</td><td class="c-decoded">consecutive 1</td></tr>
+          <tr><td class="c-time">09:40:27.102</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">03 <span class="b-nrc">7F 10 78</span> <span class="b-pad">AA AA AA AA</span></td><td class="c-decoded"><b>NRC 0x78</b> response pending</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

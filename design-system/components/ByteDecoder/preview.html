@@ -1,0 +1,47 @@
+<!-- @dsCard group="Data" height=260 subtitle="A frame literal with byte highlighting and its decoded fields" -->
+<div class="cde-root" style="display:grid;grid-template-columns:1fr 1fr;min-height:260px;">
+  <style>
+    .dc-pane { padding:var(--space-8); background:var(--surface); display:flex; flex-direction:column; gap:var(--space-8); min-width:0; }
+    .dc-lit { display:flex; flex-direction:column; gap:var(--space-2); }
+    .dc-lit .cde-frame-lit { overflow-x:auto; }
+    .dc-cells { display:flex; gap:var(--space-1); }
+    .dc-cell { width:28px; height:22px; display:flex; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:var(--radius-1); font:400 11px/16px var(--font-mono); color:var(--byte-data); background:var(--surface-sunken); }
+    .dc-cell.sid { color:var(--byte-service); font-weight:600; border-color:var(--line-strong); }
+    .dc-cell.hl { background:var(--trace-tint); color:var(--trace); border-color:var(--trace-line); font-weight:600; }
+    .dc-cell.pad { color:var(--byte-padding); border-style:dashed; }
+    .dc-off { display:flex; gap:var(--space-1); }
+    .dc-off span { width:28px; text-align:center; font:400 10px/14px var(--font-mono); color:var(--ink-faint); }
+  </style>
+  <div class="dc-pane">
+    <div class="dc-lit">
+      <span class="cde-label">Response</span>
+      <div class="cde-frame-lit"><span class="b-id">7E8</span><span class="b-sep">#</span>06 <span class="b-sid">50 03</span> 00 32 01 F4</div>
+    </div>
+    <div>
+      <div class="dc-off"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div>
+      <div class="dc-cells"><span class="dc-cell">06</span><span class="dc-cell sid">50</span><span class="dc-cell">03</span><span class="dc-cell">00</span><span class="dc-cell">32</span><span class="dc-cell hl">01</span><span class="dc-cell hl">F4</span><span class="dc-cell pad">AA</span></div>
+    </div>
+    <dl class="cde-decoder">
+      <dt>Service</dt><dd>DiagnosticSessionControl <span class="mono">0x50</span> positive</dd>
+      <dt>Session</dt><dd>extended <span class="mono">03</span></dd>
+      <dt>P2</dt><dd><span class="mono">00 32</span> = 50 ms</dd>
+      <dt>P2*</dt><dd><span class="mono">01 F4</span> = 500 × 10 ms = 5000 ms</dd>
+    </dl>
+  </div>
+  <div class="dc-pane" data-theme="dark">
+    <div class="dc-lit">
+      <span class="cde-label">Response</span>
+      <div class="cde-frame-lit"><span class="b-id">7E8</span><span class="b-sep">#</span>06 <span class="b-sid">50 03</span> 00 32 01 F4</div>
+    </div>
+    <div>
+      <div class="dc-off"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div>
+      <div class="dc-cells"><span class="dc-cell">06</span><span class="dc-cell sid">50</span><span class="dc-cell">03</span><span class="dc-cell">00</span><span class="dc-cell">32</span><span class="dc-cell hl">01</span><span class="dc-cell hl">F4</span><span class="dc-cell pad">AA</span></div>
+    </div>
+    <dl class="cde-decoder">
+      <dt>Service</dt><dd>DiagnosticSessionControl <span class="mono">0x50</span> positive</dd>
+      <dt>Session</dt><dd>extended <span class="mono">03</span></dd>
+      <dt>P2</dt><dd><span class="mono">00 32</span> = 50 ms</dd>
+      <dt>P2*</dt><dd><span class="mono">01 F4</span> = 500 × 10 ms = 5000 ms</dd>
+    </dl>
+  </div>
+</div>

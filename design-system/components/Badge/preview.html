@@ -1,0 +1,42 @@
+<!-- @dsCard group="Controls" height=180 subtitle="Status with a glyph, DTC and ID chips, live dot" -->
+<div class="cde-root" style="display:grid;grid-template-columns:1fr 1fr;min-height:180px;">
+  <style>
+    .bd-pane { display:flex; flex-direction:column; gap:var(--space-5); padding:var(--space-8); background:var(--surface); min-width:0; }
+    .bd-row { display:flex; align-items:center; gap:var(--space-3); flex-wrap:wrap; }
+    .bd-cap { font:400 11px/16px var(--font-sans); color:var(--ink-muted); }
+  </style>
+  <div class="bd-pane">
+    <div class="bd-row">
+      <span class="cde-badge cde-badge--ok"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="currentColor"/></svg>Positive</span>
+      <span class="cde-badge cde-badge--warn"><svg viewBox="0 0 10 10"><path d="M5 1 9.5 9h-9z" fill="currentColor"/></svg>Pending</span>
+      <span class="cde-badge cde-badge--fault"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>NRC 0x78</span>
+      <span class="cde-badge">Simulated</span>
+      <span class="cde-badge cde-badge--trace">Patched</span>
+    </div>
+    <div class="bd-row">
+      <span class="cde-badge cde-badge--mono cde-badge--fault">P0171</span>
+      <span class="cde-badge cde-badge--mono cde-badge--warn">U0100</span>
+      <span class="cde-badge cde-badge--mono">7E0</span>
+      <span class="cde-badge cde-badge--mono cde-badge--trace">18DA10F1</span>
+      <span class="cde-badge cde-badge--solid cde-badge--fault">3 confirmed</span>
+    </div>
+    <div class="bd-row"><span class="cde-dot cde-dot--ok cde-dot--live"></span><span class="bd-cap">Live on can0 · 500 kbit/s</span><span class="cde-dot"></span><span class="bd-cap">Idle</span></div>
+  </div>
+  <div class="bd-pane" data-theme="dark">
+    <div class="bd-row">
+      <span class="cde-badge cde-badge--ok"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="currentColor"/></svg>Positive</span>
+      <span class="cde-badge cde-badge--warn"><svg viewBox="0 0 10 10"><path d="M5 1 9.5 9h-9z" fill="currentColor"/></svg>Pending</span>
+      <span class="cde-badge cde-badge--fault"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>NRC 0x78</span>
+      <span class="cde-badge">Simulated</span>
+      <span class="cde-badge cde-badge--trace">Patched</span>
+    </div>
+    <div class="bd-row">
+      <span class="cde-badge cde-badge--mono cde-badge--fault">P0171</span>
+      <span class="cde-badge cde-badge--mono cde-badge--warn">U0100</span>
+      <span class="cde-badge cde-badge--mono">7E0</span>
+      <span class="cde-badge cde-badge--mono cde-badge--trace">18DA10F1</span>
+      <span class="cde-badge cde-badge--solid cde-badge--fault">3 confirmed</span>
+    </div>
+    <div class="bd-row"><span class="cde-dot cde-dot--ok cde-dot--live"></span><span class="bd-cap">Live on can0 · 500 kbit/s</span><span class="cde-dot"></span><span class="bd-cap">Idle</span></div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<!-- @dsCard group="Controls" height=200 subtitle="Primary, secondary, ghost, danger; mono variant for commands" -->
+<div class="cde-root" style="display:grid;grid-template-columns:1fr 1fr;min-height:200px;">
+  <style>
+    .bt-pane { display:flex; flex-direction:column; gap:var(--space-6); padding:var(--space-8); background:var(--surface); min-width:0; }
+    .bt-row { display:flex; align-items:center; gap:var(--space-4); flex-wrap:wrap; }
+  </style>
+  <div class="bt-pane">
+    <div class="bt-row">
+      <button class="cde-btn cde-btn--primary">Connect adapter</button>
+      <button class="cde-btn">Export collection</button>
+      <button class="cde-btn cde-btn--ghost">Cancel</button>
+      <button class="cde-btn cde-btn--danger">Clear DTCs</button>
+    </div>
+    <div class="bt-row">
+      <button class="cde-btn cde-btn--primary"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Start capture</button>
+      <button class="cde-btn" disabled>Stop capture</button>
+      <button class="cde-btn cde-btn--sm">Patch byte</button>
+      <button class="cde-btn cde-btn--sm cde-btn--mono">can0</button>
+      <button class="cde-btn cde-btn--sm cde-btn--mono" style="border-color:var(--trace);color:var(--trace);background:var(--trace-tint)">can1</button>
+    </div>
+  </div>
+  <div class="bt-pane" data-theme="dark">
+    <div class="bt-row">
+      <button class="cde-btn cde-btn--primary">Connect adapter</button>
+      <button class="cde-btn">Export collection</button>
+      <button class="cde-btn cde-btn--ghost">Cancel</button>
+      <button class="cde-btn cde-btn--danger">Clear DTCs</button>
+    </div>
+    <div class="bt-row">
+      <button class="cde-btn cde-btn--primary"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Start capture</button>
+      <button class="cde-btn" disabled>Stop capture</button>
+      <button class="cde-btn cde-btn--sm">Patch byte</button>
+      <button class="cde-btn cde-btn--sm cde-btn--mono">can0</button>
+      <button class="cde-btn cde-btn--sm cde-btn--mono" style="border-color:var(--trace);color:var(--trace);background:var(--trace-tint)">can1</button>
+    </div>
+  </div>
+</div>

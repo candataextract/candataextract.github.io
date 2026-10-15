@@ -1,0 +1,160 @@
+/* Can Data Extract — component styles. Every colour, size and radius comes from tokens.css. */
+
+.cde-root {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink-muted);
+  background: var(--surface);
+}
+
+/* ---------- Button ---------- */
+.cde-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 28px;
+  padding: 0 var(--space-6);
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-2);
+  background: var(--surface);
+  color: var(--ink);
+  font: 500 12px/16px var(--font-sans);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.cde-btn:hover { background: var(--surface-hover); }
+.cde-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.cde-btn:disabled { color: var(--ink-faint); border-color: var(--line); background: var(--surface); cursor: default; }
+.cde-btn--primary { background: var(--trace); border-color: var(--trace); color: var(--trace-ink); }
+.cde-btn--primary:hover { filter: brightness(0.94); background: var(--trace); }
+.cde-btn--danger { background: var(--fault); border-color: var(--fault); color: var(--signal-ink); }
+.cde-btn--danger:hover { filter: brightness(0.94); background: var(--fault); }
+.cde-btn--ghost { border-color: transparent; background: transparent; color: var(--ink-muted); }
+.cde-btn--ghost:hover { background: var(--surface-hover); color: var(--ink); }
+.cde-btn--sm { height: 22px; padding: 0 var(--space-4); font-size: 11px; }
+.cde-btn--mono { font-family: var(--font-mono); font-weight: 400; }
+.cde-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Badge ---------- */
+.cde-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 18px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-1);
+  font: 500 11px/16px var(--font-sans);
+  background: var(--surface-sunken);
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+.cde-badge--mono { font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.02em; }
+.cde-badge--ok { background: var(--ok-tint); color: var(--ok); }
+.cde-badge--warn { background: var(--warn-tint); color: var(--warn); }
+.cde-badge--fault { background: var(--fault-tint); color: var(--fault); }
+.cde-badge--trace { background: var(--trace-tint); color: var(--trace); }
+.cde-badge--solid.cde-badge--ok { background: var(--ok); color: var(--signal-ink); }
+.cde-badge--solid.cde-badge--warn { background: var(--warn); color: var(--signal-ink); }
+.cde-badge--solid.cde-badge--fault { background: var(--fault); color: var(--signal-ink); }
+.cde-badge svg { width: 10px; height: 10px; flex: none; }
+.cde-dot { width: 8px; height: 8px; border-radius: var(--radius-pill); background: var(--ink-faint); flex: none; }
+.cde-dot--ok { background: var(--ok); }
+.cde-dot--warn { background: var(--warn); }
+.cde-dot--fault { background: var(--fault); }
+.cde-dot--live { animation: cde-pulse 1.2s ease-in-out infinite; }
+@keyframes cde-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@media (prefers-reduced-motion: reduce) { .cde-dot--live { animation: none; } }
+
+/* ---------- Input ---------- */
+.cde-field { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+.cde-label {
+  font: 500 10px/14px var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.cde-input {
+  height: 28px;
+  padding: 0 var(--space-5);
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-2);
+  background: var(--surface);
+  color: var(--ink);
+  font: 400 12px/16px var(--font-sans);
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cde-input--mono { font-family: var(--font-mono); }
+.cde-input::placeholder { color: var(--ink-faint); }
+.cde-input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-color: var(--trace); }
+.cde-input[aria-invalid="true"] { border-color: var(--fault); }
+.cde-help { font: 400 11px/16px var(--font-sans); color: var(--ink-muted); }
+.cde-help--fault { color: var(--fault); }
+.cde-select { appearance: none; padding-right: 24px; background-image: none; }
+
+/* ---------- Frame table ---------- */
+.cde-frames {
+  width: 100%;
+  border-collapse: collapse;
+  font: 400 12px/18px var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+  background: var(--surface);
+}
+.cde-frames th {
+  position: sticky; top: 0;
+  text-align: left;
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface-sunken);
+  border-bottom: 1px solid var(--line);
+  font: 500 10px/14px var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.cde-frames td {
+  height: 24px;
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.cde-frames tr:hover td { background: var(--surface-hover); }
+.cde-frames tr[aria-selected="true"] td { background: var(--trace-tint); }
+.cde-frames tr[aria-selected="true"] td:first-child { box-shadow: inset 2px 0 0 var(--trace); }
+.cde-frames .c-time { color: var(--ink-muted); }
+.cde-frames .c-if { color: var(--ink-faint); }
+.cde-frames .c-id { color: var(--byte-id); font-weight: 600; }
+.cde-frames .c-dlc { color: var(--ink-faint); text-align: right; }
+.cde-frames .c-dir { color: var(--ink-muted); text-align: center; width: 16px; }
+.cde-frames .c-decoded { font-family: var(--font-sans); color: var(--ink-muted); }
+.cde-frames .c-decoded b { font-weight: 500; color: var(--ink); }
+
+/* ---------- Bytes (payload and decoder) ---------- */
+.cde-bytes { font: 400 12px/18px var(--font-mono); font-variant-numeric: tabular-nums; color: var(--byte-data); white-space: nowrap; }
+.cde-bytes .b-id { color: var(--byte-id); font-weight: 600; }
+.cde-bytes .b-sep { color: var(--ink-faint); }
+.cde-bytes .b-sid { color: var(--byte-service); font-weight: 600; }
+.cde-bytes .b-pad { color: var(--byte-padding); }
+.cde-bytes .b-nrc { color: var(--fault); font-weight: 600; }
+.cde-bytes .b-pos { color: var(--ok); font-weight: 600; }
+.cde-bytes .b-hl { background: var(--trace-tint); color: var(--trace); border-radius: var(--radius-1); padding: 1px 2px; margin: -1px -2px; }
+
+.cde-frame-lit { font: 600 16px/24px var(--font-mono); color: var(--byte-data); }
+.cde-frame-lit .b-id { color: var(--byte-id); }
+.cde-frame-lit .b-sep { color: var(--ink-faint); font-weight: 400; }
+.cde-frame-lit .b-sid { color: var(--byte-service); }
+
+/* ---------- Decoder ---------- */
+.cde-decoder { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3) var(--space-8); align-items: start; font: 400 12px/16px var(--font-sans); color: var(--ink-muted); min-width: 0; }
+.cde-decoder dt { font: 500 10px/16px var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+.cde-decoder dd { margin: 0; color: var(--ink); min-width: 0; }
+.cde-decoder dd .mono { font: 400 12px/16px var(--font-mono); }
+
+/* ---------- Panels ---------- */
+.cde-panel { background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius-3); overflow: hidden; }
+.cde-panel--sunken { background: var(--surface-sunken); }
+.cde-panel__head { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-3) var(--space-6); border-bottom: 1px solid var(--line); font: 600 12px/16px var(--font-sans); color: var(--ink); }
+.cde-pop { background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-3); box-shadow: var(--shadow-pop); }

@@ -1,0 +1,20 @@
+<!-- @dsCard group="Controls" height=220 subtitle="Text, hex and select fields with label, help and error" -->
+<div class="cde-root" style="display:grid;grid-template-columns:1fr 1fr;min-height:220px;">
+  <style>
+    .in-pane { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-6) var(--space-8); padding:var(--space-8); background:var(--surface); min-width:0; align-content:start; }
+    .in-wrap { position:relative; }
+    .in-wrap::after { content:""; position:absolute; right:10px; top:11px; width:6px; height:6px; border-right:1.5px solid var(--ink-muted); border-bottom:1.5px solid var(--ink-muted); transform:rotate(45deg); pointer-events:none; }
+  </style>
+  <div class="in-pane">
+    <label class="cde-field"><span class="cde-label">Collection name</span><input class="cde-input" id="in-name-l" value="Skoda Superb 2024 — ODIS"><span class="cde-help">Visible to everyone in the namespace.</span></label>
+    <label class="cde-field"><span class="cde-label">Request</span><input class="cde-input cde-input--mono" id="in-req-l" value="7E0#02 10 03"><span class="cde-help">ID#DATA, uppercase hex, one space per byte.</span></label>
+    <label class="cde-field"><span class="cde-label">Interface</span><span class="in-wrap"><select class="cde-input cde-select" id="in-if-l"><option>can0 · SocketCAN · 500 kbit/s</option><option>bus1 · PCAN</option></select></span></label>
+    <label class="cde-field"><span class="cde-label">Patch offset</span><input class="cde-input cde-input--mono" id="in-off-l" value="9" aria-invalid="true"><span class="cde-help cde-help--fault">Offset 9 is past the payload (6 bytes).</span></label>
+  </div>
+  <div class="in-pane" data-theme="dark">
+    <label class="cde-field"><span class="cde-label">Collection name</span><input class="cde-input" id="in-name-d" value="Skoda Superb 2024 — ODIS"><span class="cde-help">Visible to everyone in the namespace.</span></label>
+    <label class="cde-field"><span class="cde-label">Request</span><input class="cde-input cde-input--mono" id="in-req-d" placeholder="7E0#02 10 03"><span class="cde-help">ID#DATA, uppercase hex, one space per byte.</span></label>
+    <label class="cde-field"><span class="cde-label">Interface</span><span class="in-wrap"><select class="cde-input cde-select" id="in-if-d"><option>can0 · SocketCAN · 500 kbit/s</option><option>bus1 · PCAN</option></select></span></label>
+    <label class="cde-field"><span class="cde-label">Patch offset</span><input class="cde-input cde-input--mono" id="in-off-d" value="9" aria-invalid="true"><span class="cde-help cde-help--fault">Offset 9 is past the payload (6 bytes).</span></label>
+  </div>
+</div>
