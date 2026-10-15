@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import Section from '../components/Section.astro';
-import { SALES_EMAIL, COMPANY, salesMailto } from '../site';
+import { SALES_EMAIL, COMPANY, CVR, ADDRESS, salesMailto } from '../site';
 ---
 
 <Base
@@ -48,9 +48,9 @@ import { SALES_EMAIL, COMPANY, salesMailto } from '../site';
         <dt>Company</dt>
         <dd>{COMPANY}</dd>
         <dt>CVR</dt>
-        <dd><span class="todo">TODO: CVR number</span></dd>
+        <dd class="mono">{CVR}</dd>
         <dt>Address</dt>
-        <dd><span class="todo">TODO: street, postcode, city</span><br />Denmark</dd>
+        <dd>{ADDRESS.map((line, i) => <>{i > 0 && <br />}{line}</>)}</dd>
       </dl>
       <div>
         <p class="text-muted contact__copy">Tell us what car, ECU or bench setup you are working with. An engineer reads every message.</p>

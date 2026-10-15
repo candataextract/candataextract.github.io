@@ -27,4 +27,4 @@ Every push to `main` runs `.github/workflows/deploy.yaml`: the `Dockerfile` buil
 
 Product screenshots: each feature shows a placeholder until `public/screenshots/<name>-light.png` and `<name>-dark.png` exist. The list is `src/screenshots.ts`; `docs/screenshot-brief.md` is the brief for capturing them.
 
-Search for `TODO` in `src/pages/`: CVR number and address on the company page, and the open sections of the privacy policy and terms. Pricing says "Price on request" until prices are set.
+Search for `TODO` in `src/pages/`: the open sections of the privacy policy and terms. Company name, CVR and address are in `src/site.ts`. Pricing says "Price on request" until prices are set.

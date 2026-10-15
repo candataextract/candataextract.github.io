@@ -1,6 +1,6 @@
 ---
 import Legal from '../layouts/Legal.astro';
-import { SALES_EMAIL, COMPANY } from '../site';
+import { SALES_EMAIL, COMPANY, CVR, ADDRESS } from '../site';
 ---
 
 <Legal
@@ -11,8 +11,8 @@ import { SALES_EMAIL, COMPANY } from '../site';
 >
   <h2>The agreement</h2>
   <p>
-    These terms are an agreement between you and {COMPANY} (CVR <span class="todo">TODO</span>),
-    Denmark, for the use of CAN Data Extract: the online app at app.candataextract.com and the
+    These terms are an agreement between you and {COMPANY} (CVR {CVR}),
+    {ADDRESS.join(', ')}, for the use of CAN Data Extract: the online app at app.candataextract.com and the
     desktop app. An Enterprise contract takes precedence over these terms where they differ.
   </p>
 

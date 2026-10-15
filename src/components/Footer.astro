@@ -1,5 +1,5 @@
 ---
-import { APP_URL, SALES_EMAIL, COMPANY } from '../site';
+import { APP_URL, SALES_EMAIL, COMPANY, CVR } from '../site';
 const year = new Date().getFullYear();
 ---
 
@@ -27,7 +27,7 @@ const year = new Date().getFullYear();
     </nav>
   </div>
   <div class="container site-footer__legal">
-    <p>© {year} {COMPANY}</p>
+    <p>© {year} {COMPANY} · CVR {CVR}</p>
     <a class="mono" href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a>
   </div>
 </footer>

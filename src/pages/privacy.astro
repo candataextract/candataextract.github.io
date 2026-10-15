@@ -1,6 +1,6 @@
 ---
 import Legal from '../layouts/Legal.astro';
-import { SALES_EMAIL, COMPANY } from '../site';
+import { SALES_EMAIL, COMPANY, CVR, ADDRESS } from '../site';
 ---
 
 <Legal
@@ -11,7 +11,7 @@ import { SALES_EMAIL, COMPANY } from '../site';
 >
   <h2>Who we are</h2>
   <p>
-    {COMPANY} (CVR <span class="todo">TODO</span>), <span class="todo">TODO: address</span>, Denmark,
+    {COMPANY} (CVR {CVR}), {ADDRESS.join(', ')},
     is the data controller for the personal data described here. Contact us at
     <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a>.
   </p>
