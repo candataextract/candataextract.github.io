@@ -1,0 +1,19 @@
+---
+// Wraps .cde-badge. Status badges always carry their fixed glyph: ● ok, ▲ warn, ✕ fault.
+interface Props {
+  tone?: 'neutral' | 'ok' | 'warn' | 'fault' | 'trace';
+  mono?: boolean;
+  class?: string;
+}
+const { tone = 'neutral', mono = false, class: className } = Astro.props;
+const classes = ['cde-badge', tone !== 'neutral' && `cde-badge--${tone}`, mono && 'cde-badge--mono', className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<span class={classes}>
+  {tone === 'ok' && <svg viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="currentColor" /></svg>}
+  {tone === 'warn' && <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 1 9.5 9h-9z" fill="currentColor" /></svg>}
+  {tone === 'fault' && <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>}
+  <slot />
+</span>

@@ -50,5 +50,3 @@ The canonical sample, used wherever a sample is needed and nothing real is at ha
 → 7E0#02 10 03          DiagnosticSessionControl (0x10), extended session
 ← 7E8#06 50 03 00 32 01 F4   positive response, P2 = 50 ms, P2* = 5000 ms
 ```
-
-And the brand's own sample frame, for swag and the website only: `CDE#43 44 45`.

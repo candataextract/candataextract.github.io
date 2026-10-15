@@ -1,0 +1,168 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Section from '../components/Section.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import FrameLiteral from '../components/FrameLiteral.astro';
+import FrameTable from '../components/FrameTable.astro';
+import Screenshot from '../components/Screenshot.astro';
+import { APP_URL, salesMailto } from '../site';
+---
+
+<Base
+  title="CAN Data Extract: record, decode, simulate and share CAN diagnostics"
+  description="CAN Data Extract turns raw CAN frames into readable UDS, KWP2000 and OBD diagnostics. Record from a real car, decode on the byte, simulate ECUs on the bench and share traces with your team."
+>
+  <section class="hero">
+    <div class="container">
+      <Eyebrow>For automotive diagnostics engineers</Eyebrow>
+      <h1 class="display-1 hero__title">Know exactly what the ECU said.</h1>
+      <p class="lede hero__lede">
+        CAN Data Extract records, decodes, simulates and shares diagnostic traffic on the
+        CAN bus. UDS, KWP2000 and OBD over ISO-TP, decoded down to the byte, from a live
+        car or a trace file.
+      </p>
+      <div class="hero__actions">
+        <Button href={APP_URL} variant="primary" size="lg">Open the app</Button>
+        <Button href="/product/" size="lg">See the product</Button>
+      </div>
+    </div>
+    <div class="container hero__figure">
+      <FrameTable />
+    </div>
+  </section>
+
+  <Section
+    eyebrow="What it does"
+    title="From raw frames to answers you can check"
+    lede="Every decoded value keeps its raw bytes next to it, so you can check the arithmetic yourself."
+  >
+    <div class="card-grid">
+      <FeatureCard title="Record" spec="SocketCAN · PCAN · candump · PCAN TRC · VCDS · ODIS · MF4">
+        <svg slot="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3" /></svg>
+        Capture from a USB CAN adapter on a real car, or import the trace files you already have.
+        The desktop app scans the car for its VIN, ECUs, data identifiers and fault codes.
+      </FeatureCard>
+      <FeatureCard title="Decode" spec="UDS (ISO 14229) · KWP2000 · OBD · ISO-TP · CAN FD">
+        <svg slot="icon" viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h6" /></svg>
+        A virtualised frame table that keeps up with the bus, ISO-TP stream reassembly, and a
+        byte decoder that highlights which bytes mean what.
+      </FeatureCard>
+      <FeatureCard title="Simulate" spec="One or many ECUs · YAML config · built from traces">
+        <svg slot="icon" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1" /><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" /></svg>
+        Turn a recorded session into an ECU simulator config and replay the car on the bench, so
+        you can test a diagnostic tool without the vehicle.
+      </FeatureCard>
+      <FeatureCard title="Share" spec="Team namespaces · collections · saved transforms">
+        <svg slot="icon" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5" /><circle cx="18" cy="6" r="2.5" /><circle cx="18" cy="18" r="2.5" /><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6" /></svg>
+        Keep traces in collections, write CEL transforms that pull signals out of payloads, and
+        share both with your team. Sign in with Google or Microsoft Entra ID.
+      </FeatureCard>
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Two ways to run it"
+    title="Online app and desktop app"
+    lede="The same tool in two places. Start in the browser; install the desktop app when you need the hardware."
+  >
+    <div class="split">
+      <div class="way">
+        <Screenshot name="monitor" class="way__shot" />
+        <h3 class="h3">Online app</h3>
+        <p class="mono way__host">app.candataextract.com</p>
+        <p class="text-muted">
+          Open traces, decode and transform them, and work in your team's collections from any
+          browser. Nothing to install.
+        </p>
+        <Button href={APP_URL}>Log in</Button>
+      </div>
+      <div class="way">
+        <Screenshot name="record" class="way__shot" />
+        <h3 class="h3">Desktop app</h3>
+        <p class="mono way__host">Windows · macOS · Linux</p>
+        <p class="text-muted">
+          Everything in the online app, plus your own CAN hardware: record from a car, scan its
+          ECUs, simulate ECUs on the bench, and stream captures to the cloud.
+        </p>
+        <Button href="/download/">Download</Button>
+      </div>
+    </div>
+  </Section>
+
+  <Section tone="sunken" eyebrow="Written the way you write it" title="Request before response, hex on the byte">
+    <div class="sample">
+      <div class="sample__block" role="figure" aria-label="Sample request and response">
+        <p><FrameLiteral dir="→" id="7E0" data="02 10 03" service={2} size="code" /></p>
+        <p><FrameLiteral dir="←" id="7E8" data="06 50 03 00 32 01 F4" service={2} size="code" /></p>
+      </div>
+      <dl class="cde-decoder sample__decoded">
+        <dt>Service</dt><dd>DiagnosticSessionControl (0x10), extended session</dd>
+        <dt>Response</dt><dd>positive, <span class="mono">50</span> = <span class="mono">10</span> + <span class="mono">40</span></dd>
+        <dt>P2</dt><dd><span class="mono">00 32</span> = 50 ms</dd>
+        <dt>P2*</dt><dd><span class="mono">01 F4</span> = 500 × 10 ms = 5000 ms</dd>
+      </dl>
+    </div>
+  </Section>
+
+  <Section eyebrow="Supported" title="Protocols, formats and adapters">
+    <dl class="support">
+      <div><dt class="label">Protocols</dt><dd class="mono">UDS · KWP2000 · OBD · ISO-TP · CAN FD · 11-bit and 29-bit IDs</dd></div>
+      <div><dt class="label">Trace formats</dt><dd class="mono">candump log · PCAN TRC · VCDS · ODIS · MF4</dd></div>
+      <div><dt class="label">Adapters</dt><dd class="mono">SocketCAN on Linux · PCAN on macOS and Windows</dd></div>
+    </dl>
+  </Section>
+
+  <section class="cta">
+    <div class="container cta__inner">
+      <h2 class="display-2">Bring it to your team.</h2>
+      <p class="lede">Free for public work. Pro and Enterprise keep your transforms and traces private, and Enterprise runs on your own servers.</p>
+      <div class="hero__actions">
+        <Button href="/pricing/" variant="primary" size="lg">See pricing</Button>
+        <Button href={salesMailto('CAN Data Extract')} size="lg">Contact sales</Button>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-block: var(--space-24) 0; }
+  .hero__title { margin-top: var(--space-8); max-width: 18ch; color: var(--ink); }
+  .hero__lede { margin-top: var(--space-10); }
+  .hero__actions { margin-top: var(--space-12); display: flex; gap: var(--space-6); flex-wrap: wrap; }
+  .hero__figure { margin-top: var(--space-16); }
+
+  .way {
+    display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-6);
+    padding: var(--space-12) var(--space-10);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-3);
+  }
+  :global(.way__shot) { align-self: stretch; margin-bottom: var(--space-4); }
+  .way__host { color: var(--trace); font-size: 13px; }
+  .way .text-muted { flex: 1; }
+
+  .sample { display: grid; grid-template-columns: auto 1fr; gap: var(--space-16); align-items: start; }
+  .sample__block {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-3);
+    padding: var(--space-10) var(--space-12);
+    display: flex; flex-direction: column; gap: var(--space-3);
+    overflow-x: auto;
+  }
+  .sample__decoded { font-size: 14px; line-height: 20px; }
+  .sample__decoded .mono { font-size: 13px; }
+  @media (max-width: 800px) { .sample { grid-template-columns: 1fr; gap: var(--space-10); } }
+
+  .support { display: grid; gap: var(--space-10); }
+  .support > div { display: grid; grid-template-columns: 180px 1fr; gap: var(--space-8); padding-bottom: var(--space-10); border-bottom: 1px solid var(--line); }
+  .support dt { text-transform: uppercase; color: var(--ink-muted); padding-top: 3px; }
+  .support dd { margin: 0; color: var(--ink); font-size: 14px; }
+  @media (max-width: 700px) { .support > div { grid-template-columns: 1fr; gap: var(--space-4); } }
+
+  .cta { padding-top: var(--space-24); }
+  .cta__inner { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-8); }
+  .cta__inner .hero__actions { margin-top: var(--space-4); }
+</style>

@@ -36,8 +36,6 @@ The mark is the CAN bus on an oscilloscope: two traces, CAN_H above in `trace` a
 - Do not rotate, skew, add a drop shadow, change the bit pattern, swap the channels' colours, or place the mark inside another shape.
 - `CDE` as a typographic short mark (`cde-short.svg`) is for places the mark cannot be drawn: a monospaced terminal banner, an ASCII header.
 
-The bytes `43 44 45` are the ASCII of "CDE". `CDE#43 44 45` is the brand's one in-joke; use it as the sample frame on swag, the 404 page and the website hero, and nowhere that it could be mistaken for real data.
-
 ## Colour
 
 Two themes, equal weight. Every surface in the product must be designed in both; light is the first theme because docs and print are light, dark is where most engineers run the monitor.

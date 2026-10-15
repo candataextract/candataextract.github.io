@@ -1,0 +1,61 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { SALES_EMAIL, COMPANY } from '../site';
+---
+
+<Legal
+  title="Terms of service · CAN Data Extract"
+  heading="Terms of service"
+  description={`The terms for using CAN Data Extract, the online app and the desktop app from ${COMPANY}.`}
+  updated="2026-10-16"
+>
+  <h2>The agreement</h2>
+  <p>
+    These terms are an agreement between you and {COMPANY} (CVR <span class="todo">TODO</span>),
+    Denmark, for the use of CAN Data Extract: the online app at app.candataextract.com and the
+    desktop app. An Enterprise contract takes precedence over these terms where they differ.
+  </p>
+
+  <h2>Plans and your data</h2>
+  <p>Every plan includes every feature. The plans differ in who can see what you create.</p>
+  <h3>Free</h3>
+  <p>
+    Transforms and traces you create or upload are <strong>public</strong>. Any CAN Data Extract
+    user can find, open and copy them. Do not upload traces you are not allowed to publish.
+  </p>
+  <h3>Pro</h3>
+  <p>
+    Transforms are <strong>private</strong> to your namespace. Traces are private to your
+    namespace, and you grant {COMPANY} the right to use them for <strong>testing and
+    validation</strong> of CAN Data Extract. We do not publish them or share them with other customers.
+  </p>
+  <h3>Enterprise</h3>
+  <p>
+    Transforms and traces are <strong>private</strong> to your namespace and are not used by
+    {COMPANY} for any purpose. Enterprise can be self-hosted, in which case your data stays on
+    your servers.
+  </p>
+
+  <h2>Working on vehicles</h2>
+  <p>
+    CAN Data Extract can send diagnostic requests to a vehicle and simulate ECUs on a CAN bus.
+    Sending requests to a vehicle can change its state, including clearing fault codes and
+    changing sessions. You are responsible for working safely, on vehicles you are allowed to
+    work on, and never on a vehicle in motion on a public road.
+  </p>
+
+  <h2>Acceptable use</h2>
+  <p><span class="todo">TODO: prohibited uses, account suspension</span></p>
+
+  <h2>Payment</h2>
+  <p><span class="todo">TODO: billing, term and renewal, once prices are set</span></p>
+
+  <h2>Liability</h2>
+  <p><span class="todo">TODO: warranty disclaimer and limitation of liability</span></p>
+
+  <h2>Governing law</h2>
+  <p>These terms are governed by Danish law. <span class="todo">TODO: venue</span></p>
+
+  <h2>Contact</h2>
+  <p>Questions about these terms: <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a>.</p>
+</Legal>

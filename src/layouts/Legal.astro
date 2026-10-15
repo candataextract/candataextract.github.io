@@ -1,0 +1,38 @@
+---
+import Base from './Base.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+
+// Layout for legal pages: page head, draft notice, prose body.
+interface Props {
+  title: string;
+  heading: string;
+  description: string;
+  updated: string;
+}
+const { title, heading, description, updated } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <section class="legal">
+    <div class="container">
+      <Eyebrow>Legal</Eyebrow>
+      <h1 class="display-2 legal__title">{heading}</h1>
+      <p class="legal__meta mono">Last updated <time datetime={updated}>{updated}</time></p>
+      <p class="legal__draft" role="note">
+        <span class="cde-badge cde-badge--warn"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 1 9.5 9h-9z" fill="currentColor" /></svg>Draft</span>
+        This text is a placeholder and has not been reviewed by a lawyer.
+      </p>
+      <article class="prose legal__body">
+        <slot />
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal { padding-top: var(--space-24); }
+  .legal__title { margin-top: var(--space-6); color: var(--ink); }
+  .legal__meta { margin-top: var(--space-6); font-size: 13px; color: var(--ink-muted); }
+  .legal__draft { margin-top: var(--space-10); display: flex; gap: var(--space-5); align-items: center; flex-wrap: wrap; font-size: 14px; color: var(--ink-muted); }
+  .legal__body { margin-top: var(--space-6); }
+</style>

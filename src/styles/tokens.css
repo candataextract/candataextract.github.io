@@ -1,0 +1,141 @@
+/* Can Data Extract — adapted from design-system/tokens.css (font paths point at /fonts/) */
+:root, [data-theme="light"] {
+  --surface: #ffffff;
+  --surface-sunken: #f5f4f9;
+  --surface-raised: #ffffff;
+  --surface-hover: #f0eef5;
+  --ink: #121019;
+  --ink-muted: #5e596d;
+  --ink-faint: #8a8597;
+  --line: #e2e0ea;
+  --line-strong: #c6c2d3;
+  --line-control: var(--ink-faint);
+  --trace: #5b2fd6;
+  --trace-ink: #ffffff;
+  --trace-tint: #efeafc;
+  --trace-line: #b6a5ef;
+  --focus: var(--trace);
+  --fault: #c42b2b;
+  --fault-tint: #fbe9e9;
+  --warn: #9a5b00;
+  --warn-tint: #fdf0d5;
+  --ok: #17783a;
+  --ok-tint: #e2f5e8;
+  --signal-ink: #ffffff;
+  --byte-id: var(--trace);
+  --byte-service: var(--ink);
+  --byte-data: var(--ink-muted);
+  --byte-padding: var(--ink-faint);
+  --paper: #ffffff;
+  --ink-fixed: #121019;
+  --shadow-pop: 0 10px 15px -3px rgba(18,16,25,0.10), 0 4px 6px -2px rgba(18,16,25,0.05);
+}
+[data-theme="dark"] {
+  --surface: #15161c;
+  --surface-sunken: #1b1c24;
+  --surface-raised: #20212b;
+  --surface-hover: #23242e;
+  --ink: #f0eef6;
+  --ink-muted: #a39fb1;
+  --ink-faint: #716d80;
+  --line: #2e2f3b;
+  --line-strong: #444556;
+  --line-control: var(--ink-faint);
+  --trace: #b39bff;
+  --trace-ink: #15161c;
+  --trace-tint: #2a2342;
+  --trace-line: #5e4aa6;
+  --focus: var(--trace);
+  --fault: #ff7373;
+  --fault-tint: #3a2024;
+  --warn: #ffbf47;
+  --warn-tint: #3a2f15;
+  --ok: #55d97f;
+  --ok-tint: #163421;
+  --signal-ink: #15161c;
+  --byte-id: var(--trace);
+  --byte-service: var(--ink);
+  --byte-data: var(--ink-muted);
+  --byte-padding: var(--ink-faint);
+  --paper: #ffffff;
+  --ink-fixed: #121019;
+  --shadow-pop: 0 10px 15px -3px rgba(0,0,0,0.40), 0 4px 6px -2px rgba(0,0,0,0.25);
+}
+:root {
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 10px;
+  --space-6: 12px;
+  --space-7: 14px;
+  --space-8: 16px;
+  --space-10: 24px;
+  --space-12: 32px;
+  --space-16: 48px;
+  --space-24: 96px;
+  --radius-1: 2px;
+  --radius-2: 4px;
+  --radius-3: 6px;
+  --radius-pill: 999px;
+  --font-display: "Schibsted Grotesk", "IBM Plex Sans", system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-wordmark: "Martian Mono", "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-sans: "IBM Plex Sans", system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/SchibstedGrotesk-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Martian Mono"; src: url("/fonts/MartianMono-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("/fonts/JetBrainsMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("/fonts/JetBrainsMono-SemiBold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("/fonts/IBMPlexSans-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("/fonts/IBMPlexSans-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("/fonts/IBMPlexSans-SemiBold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+.display-1 { font-family: "Schibsted Grotesk", "IBM Plex Sans", system-ui, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 56px; line-height: 58px; font-weight: 700; letter-spacing: -0.02em; }
+.display-2 { font-family: "Schibsted Grotesk", "IBM Plex Sans", system-ui, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 32px; line-height: 36px; font-weight: 700; letter-spacing: -0.01em; }
+.wordmark { font-family: "Martian Mono", "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: 0.06em; }
+.title { font-family: "IBM Plex Sans", system-ui, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: normal; }
+.heading { font-family: "IBM Plex Sans", system-ui, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; font-weight: 600; letter-spacing: normal; }
+.body { font-family: "IBM Plex Sans", system-ui, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20px; font-weight: 400; letter-spacing: normal; }
+.ui { font-family: "IBM Plex Sans", system-ui, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 12px; line-height: 16px; font-weight: 400; letter-spacing: normal; }
+.caption { font-family: "IBM Plex Sans", system-ui, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 11px; line-height: 16px; font-weight: 400; letter-spacing: normal; }
+.label { font-family: "IBM Plex Sans", system-ui, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 10px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; }
+.data { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; line-height: 18px; font-weight: 400; letter-spacing: normal; }
+.data-strong { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; line-height: 18px; font-weight: 600; letter-spacing: normal; }
+.data-sm { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; line-height: 16px; font-weight: 400; letter-spacing: normal; }
+.code { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 20px; font-weight: 400; letter-spacing: normal; }
+.frame { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 16px; line-height: 24px; font-weight: 600; letter-spacing: normal; }
+
+/* Follow the OS theme unless the visitor picked one with the toggle. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface: #15161c;
+    --surface-sunken: #1b1c24;
+    --surface-raised: #20212b;
+    --surface-hover: #23242e;
+    --ink: #f0eef6;
+    --ink-muted: #a39fb1;
+    --ink-faint: #716d80;
+    --line: #2e2f3b;
+    --line-strong: #444556;
+    --line-control: var(--ink-faint);
+    --trace: #b39bff;
+    --trace-ink: #15161c;
+    --trace-tint: #2a2342;
+    --trace-line: #5e4aa6;
+    --focus: var(--trace);
+    --fault: #ff7373;
+    --fault-tint: #3a2024;
+    --warn: #ffbf47;
+    --warn-tint: #3a2f15;
+    --ok: #55d97f;
+    --ok-tint: #163421;
+    --signal-ink: #15161c;
+    --byte-id: var(--trace);
+    --byte-service: var(--ink);
+    --byte-data: var(--ink-muted);
+    --byte-padding: var(--ink-faint);
+    --paper: #ffffff;
+    --ink-fixed: #121019;
+    --shadow-pop: 0 10px 15px -3px rgba(0,0,0,0.40), 0 4px 6px -2px rgba(0,0,0,0.25);
+  }
+}

@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import Badge from '../components/Badge.astro';
+import Button from '../components/Button.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Section from '../components/Section.astro';
+import { APP_URL, salesMailto } from '../site';
+
+const platforms = [
+  { name: 'Windows', adapter: 'PCAN' },
+  { name: 'macOS', adapter: 'PCAN' },
+  { name: 'Linux', adapter: 'SocketCAN' },
+];
+---
+
+<Base
+  title="Download the desktop app · CAN Data Extract"
+  description="The CAN Data Extract desktop app for Windows, macOS and Linux records from CAN hardware, scans cars and simulates ECUs. Builds are not public yet; contact sales for early access."
+>
+  <section class="page-head">
+    <div class="container">
+      <Eyebrow>Download</Eyebrow>
+      <h1 class="display-2 page-head__title">The desktop app.</h1>
+      <p class="lede page-head__lede">
+        Record from your own CAN adapter, scan a car, and simulate ECUs on the bench. Public
+        builds are not available yet. Write to sales for early access.
+      </p>
+      <div class="page-head__actions">
+        <Button href={salesMailto('CAN Data Extract desktop app early access')} variant="primary" size="lg">Request early access</Button>
+        <Button href={APP_URL} size="lg">Use the online app</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="platforms">
+    <div class="container card-grid">
+      {platforms.map((p) => (
+        <div class="platform">
+          <div class="platform__head">
+            <h2 class="h3">{p.name}</h2>
+            <Badge>Coming soon</Badge>
+          </div>
+          <p class="platform__adapter text-muted">Adapter: <span class="mono">{p.adapter}</span></p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Section eyebrow="Included" title="What the desktop app adds">
+    <ul class="glyph-list included">
+      <li><span class="g g--ok" aria-hidden="true">●</span><span>Record frames from a USB CAN adapter, CAN and CAN FD, 11-bit and 29-bit IDs.</span></li>
+      <li><span class="g g--ok" aria-hidden="true">●</span><span>Scan a car for its VIN, ECUs, data identifiers and fault codes.</span></li>
+      <li><span class="g g--ok" aria-hidden="true">●</span><span>Simulate one or many ECUs on a CAN interface from a YAML config.</span></li>
+      <li><span class="g g--ok" aria-hidden="true">●</span><span>Build simulator configs from candump, PCAN TRC, VCDS, ODIS and MF4 traces.</span></li>
+      <li><span class="g g--ok" aria-hidden="true">●</span><span>Stream captures to your namespace in the online app.</span></li>
+    </ul>
+  </Section>
+</Base>
+
+<style>
+  .page-head { padding-block: var(--space-24) 0; }
+  .page-head__title { margin-top: var(--space-6); color: var(--ink); }
+  .page-head__lede { margin-top: var(--space-10); }
+  .page-head__actions { margin-top: var(--space-12); display: flex; gap: var(--space-6); flex-wrap: wrap; }
+
+  .platforms { padding-top: var(--space-16); }
+  .platform {
+    display: flex; flex-direction: column; gap: var(--space-5);
+    padding: var(--space-10);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-3);
+  }
+  .platform__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); }
+  .platform__adapter { font-size: 14px; }
+  .platform__adapter .mono { color: var(--ink); }
+
+  .included { max-width: 70ch; color: var(--ink-muted); }
+</style>

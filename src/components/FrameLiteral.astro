@@ -1,0 +1,26 @@
+---
+// A frame written as one string, `ID#DATA`, coloured with the byte aliases.
+// `service` marks how many leading bytes are length + service (shown in byte-service).
+interface Props {
+  id: string;
+  data: string;
+  service?: number;
+  dir?: '→' | '←';
+  size?: 'frame' | 'code';
+  class?: string;
+}
+const { id, data, service = 0, dir, size = 'frame', class: className } = Astro.props;
+const bytes = data.trim().split(/\s+/);
+const head = bytes.slice(0, service).join(' ');
+const rest = bytes.slice(service).join(' ');
+---
+
+<span class={['cde-frame-lit', size === 'code' && 'cde-frame-lit--code', className].filter(Boolean).join(' ')}>
+  {dir && <span class="lit-dir" aria-label={dir === '→' ? 'request' : 'response'}>{dir} </span>}<span class="b-id">{id}</span><span class="b-sep">#</span>{head && <span class="b-sid">{head}</span>}{head && rest && ' '}{rest}
+</span>
+
+<style is:global>
+  .cde-frame-lit { white-space: nowrap; }
+  .cde-frame-lit--code { font-size: 13px; line-height: 20px; }
+  .cde-frame-lit .lit-dir { color: var(--ink-muted); font-weight: 400; }
+</style>

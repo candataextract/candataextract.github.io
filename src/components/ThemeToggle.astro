@@ -1,0 +1,46 @@
+---
+// Switches between light and dark. The choice is stored per browser; with no choice the OS theme applies.
+---
+
+<button class="cde-btn cde-btn--ghost theme-toggle" type="button" aria-label="Switch to dark theme" data-theme-toggle>
+  <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
+  <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></svg>
+</button>
+
+<script>
+  const root = document.documentElement;
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function current(): 'light' | 'dark' {
+    const set = root.getAttribute('data-theme');
+    if (set === 'light' || set === 'dark') return set;
+    return media.matches ? 'dark' : 'light';
+  }
+
+  function label() {
+    const next = current() === 'dark' ? 'light' : 'dark';
+    document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((b) => {
+      b.setAttribute('aria-label', `Switch to ${next} theme`);
+      b.dataset.current = current();
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((b) => {
+    b.addEventListener('click', () => {
+      const next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('cde-theme', next); } catch {}
+      label();
+    });
+  });
+  media.addEventListener('change', label);
+  label();
+</script>
+
+<style>
+  .theme-toggle { width: 32px; padding: 0; justify-content: center; }
+  .theme-toggle svg { width: 16px; height: 16px; stroke-width: 1.5; }
+  .theme-toggle__sun { display: none; }
+  .theme-toggle[data-current='dark'] .theme-toggle__sun { display: block; }
+  .theme-toggle[data-current='dark'] .theme-toggle__moon { display: none; }
+</style>

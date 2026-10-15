@@ -1,0 +1,70 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { SHOTS } from '../screenshots';
+
+// A product screenshot in the theme of the page: <name>-light.png on light, <name>-dark.png on dark.
+// 1px line-strong border, no device frame. Until the files exist it renders a placeholder that says what to capture.
+interface Props {
+  name: keyof typeof SHOTS;
+  class?: string;
+}
+const { name, class: className } = Astro.props;
+const spec = SHOTS[name];
+if (!spec) throw new Error(`Unknown screenshot "${name}". Add it to src/screenshots.ts.`);
+
+const dir = path.join(process.cwd(), 'public', 'screenshots');
+const has = (theme: string) => fs.existsSync(path.join(dir, `${name}-${theme}.png`));
+const light = has('light');
+const dark = has('dark');
+const src = (theme: string) => `/screenshots/${name}-${theme}.png`;
+---
+
+<figure class={['shot', className].filter(Boolean).join(' ')}>
+  {light || dark ? (
+    <>
+      <img class="shot__img on-light" src={src(light ? 'light' : 'dark')} alt={spec.alt} width="1440" height="900" loading="lazy" decoding="async" />
+      <img class="shot__img on-dark" src={src(dark ? 'dark' : 'light')} alt={spec.alt} width="1440" height="900" loading="lazy" decoding="async" />
+    </>
+  ) : (
+    <div class="shot__placeholder" role="img" aria-label={`Screenshot to come: ${spec.title}`}>
+      <p class="label shot__tag">Screenshot placeholder · {spec.app === 'desktop' ? 'Desktop app' : 'Online app'}</p>
+      <p class="shot__title">{spec.title}</p>
+      <p class="shot__shows">{spec.shows}</p>
+      <p class="shot__file mono">public/screenshots/{name}-light.png · {name}-dark.png</p>
+    </div>
+  )}
+</figure>
+
+<style>
+  .shot { margin: 0; min-width: 0; }
+  .shot__img {
+    width: 100%; height: auto;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-3);
+    background: var(--surface-sunken);
+  }
+  .shot__img.on-dark { display: none; }
+  :global([data-theme='dark']) .shot__img.on-light { display: none; }
+  :global([data-theme='dark']) .shot__img.on-dark { display: block; }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .shot__img.on-light { display: none; }
+    :global(:root:not([data-theme='light'])) .shot__img.on-dark { display: block; }
+  }
+  .shot__placeholder {
+    aspect-ratio: 16 / 10;
+    display: flex; flex-direction: column; justify-content: center; gap: var(--space-5);
+    padding: var(--space-12);
+    background: var(--surface-sunken);
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-3);
+    overflow: hidden;
+  }
+  .shot__tag { text-transform: uppercase; color: var(--ink-faint); }
+  .shot__title { font: 600 18px/24px var(--font-sans); color: var(--ink); }
+  .shot__shows { font-size: 14px; line-height: 22px; color: var(--ink-muted); max-width: 52ch; }
+  .shot__file { font-size: 12px; color: var(--ink-faint); }
+  @media (max-width: 600px) {
+    .shot__placeholder { aspect-ratio: auto; min-height: 220px; padding: var(--space-10); }
+  }
+</style>

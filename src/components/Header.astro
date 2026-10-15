@@ -1,0 +1,74 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { APP_URL } from '../site';
+
+const nav = [
+  { href: '/product/', label: 'Product' },
+  { href: '/pricing/', label: 'Pricing' },
+  { href: '/download/', label: 'Download' },
+  { href: '/docs/', label: 'Docs' },
+  { href: '/company/', label: 'Company' },
+];
+const current = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__logo" aria-label="CAN Data Extract, home">
+      <span class="logo-full">
+        <img class="on-light" src="/logos/cde-lockup.svg" alt="CAN Data Extract" height="24" />
+        <img class="on-dark" src="/logos/cde-lockup-paper-trace.svg" alt="CAN Data Extract" height="24" />
+      </span>
+      <span class="logo-mark">
+        <img class="on-light" src="/logos/cde-mark.svg" alt="CAN Data Extract" height="32" width="32" />
+        <img class="on-dark" src="/logos/cde-mark-dark.svg" alt="CAN Data Extract" height="32" width="32" />
+      </span>
+    </a>
+    <nav class="site-header__nav" aria-label="Main">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class="site-header__link"
+          aria-current={current.startsWith(item.href) ? 'page' : undefined}
+        >{item.label}</a>
+      ))}
+    </nav>
+    <div class="site-header__actions">
+      <ThemeToggle />
+      <a class="cde-btn cde-btn--primary" href={APP_URL}>Log in</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-header__inner {
+    display: flex; align-items: center; gap: var(--space-12);
+    min-height: 64px;
+  }
+  .site-header__logo { flex: none; }
+  .site-header__logo img { height: 24px; width: auto; }
+  .site-header__logo .logo-mark { display: none; }
+  .site-header__logo .logo-mark img { height: 32px; }
+  .site-header__nav { display: flex; align-items: center; gap: var(--space-10); flex-wrap: wrap; flex: 1; }
+  .site-header__link {
+    font: 500 14px/20px var(--font-sans);
+    text-decoration: none; color: var(--ink-muted);
+    padding: var(--space-3) 0;
+    border-bottom: 2px solid transparent;
+  }
+  .site-header__link:hover { color: var(--ink); text-decoration: none; }
+  .site-header__link[aria-current='page'] { color: var(--ink); border-bottom-color: var(--trace); }
+  .site-header__actions { display: flex; align-items: center; gap: var(--space-4); margin-left: auto; }
+  @media (max-width: 900px) {
+    .site-header__inner { flex-wrap: wrap; gap: var(--space-6) var(--space-10); padding-block: var(--space-6); }
+    .site-header__nav { order: 3; flex-basis: 100%; gap: var(--space-4) var(--space-8); }
+  }
+  @media (max-width: 560px) {
+    .site-header__logo .logo-full { display: none; }
+    .site-header__logo .logo-mark { display: block; }
+  }
+</style>

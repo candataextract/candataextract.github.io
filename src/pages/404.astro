@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+---
+
+<Base title="Page not found · CAN Data Extract" description="No page at this address.">
+  <section class="nf">
+    <div class="container">
+      <h1 class="display-2 nf__title">No page at this address.</h1>
+      <p class="lede nf__lede">Check the link, or start from the home page.</p>
+      <div class="nf__actions"><Button href="/" variant="primary" size="lg">Go to the home page</Button></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { padding-top: var(--space-24); }
+  .nf__title { margin-top: 0; color: var(--ink); }
+  .nf__lede { margin-top: var(--space-8); }
+  .nf__actions { margin-top: var(--space-12); }
+</style>

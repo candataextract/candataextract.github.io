@@ -1,0 +1,24 @@
+---
+// Wraps .cde-btn from the design system. One primary per view at most; labels are imperative verbs.
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+}
+const { variant = 'secondary', size = 'md', href, class: className } = Astro.props;
+const classes = [
+  'cde-btn',
+  variant !== 'secondary' && `cde-btn--${variant}`,
+  size !== 'md' && `cde-btn--${size}`,
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+{href ? (
+  <a class={classes} href={href}><slot /></a>
+) : (
+  <button class={classes} type="button"><slot /></button>
+)}

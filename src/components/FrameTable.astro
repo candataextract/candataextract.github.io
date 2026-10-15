@@ -1,0 +1,42 @@
+---
+// The frame table as the website's hero image. Static sample rows from design-system/components/FrameTable.
+// Rendered in the page's own theme with a 1px line-strong border, no device frame.
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<figure class={['frame-figure', className].filter(Boolean).join(' ')}>
+  <div class="cde-panel">
+    <div class="cde-panel__head">
+      <span class="cde-dot cde-dot--ok cde-dot--live" aria-hidden="true"></span>
+      <span>can0 · 500 kbit/s · live</span>
+      <span class="frame-figure__count">14 169 frames</span>
+    </div>
+    <div class="scroll-x" tabindex="0" role="region" aria-label="Sample frame table">
+      <table class="cde-frames">
+        <thead><tr><th>Time</th><th>If</th><th>ID</th><th>DLC</th><th><span class="visually-hidden">Direction</span></th><th>Payload</th><th>Decoded</th></tr></thead>
+        <tbody>
+          <tr><td class="c-time">09:40:26.489</td><td class="c-if">can0</td><td class="c-id">7E0</td><td class="c-dlc">8</td><td class="c-dir">→</td><td class="cde-bytes"><span class="b-sid">02 10</span> 03 <span class="b-pad">AA AA AA AA AA</span></td><td class="c-decoded"><b>DiagnosticSessionControl</b> extended</td></tr>
+          <tr aria-selected="true"><td class="c-time">09:40:26.586</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">06 <span class="b-pos">50 03</span> 00 32 <span class="b-hl">01 F4</span> <span class="b-pad">AA</span></td><td class="c-decoded"><b>positive</b> P2* 5000 ms</td></tr>
+          <tr><td class="c-time">09:40:26.612</td><td class="c-if">can0</td><td class="c-id">7E0</td><td class="c-dlc">8</td><td class="c-dir">→</td><td class="cde-bytes"><span class="b-sid">03 22</span> F1 90 <span class="b-pad">AA AA AA AA</span></td><td class="c-decoded"><b>ReadDataByIdentifier</b> 0xF190 VIN</td></tr>
+          <tr><td class="c-time">09:40:26.640</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">10 14 <span class="b-pos">62</span> F1 90 54 4D 42</td><td class="c-decoded">ISO-TP first frame, 20 bytes</td></tr>
+          <tr><td class="c-time">09:40:26.641</td><td class="c-if">can0</td><td class="c-id">7E0</td><td class="c-dlc">8</td><td class="c-dir">→</td><td class="cde-bytes">30 00 00 <span class="b-pad">AA AA AA AA AA</span></td><td class="c-decoded">flow control, continue</td></tr>
+          <tr><td class="c-time">09:40:26.655</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">21 4A 4E 30 4E 5A 37 52</td><td class="c-decoded">consecutive 1</td></tr>
+          <tr><td class="c-time">09:40:27.102</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">03 <span class="b-nrc">7F 10 78</span> <span class="b-pad">AA AA AA AA</span></td><td class="c-decoded"><b>NRC 0x78</b> response pending</td></tr>
+          <tr><td class="c-time">09:40:27.231</td><td class="c-if">can0</td><td class="c-id">7E0</td><td class="c-dlc">8</td><td class="c-dir">→</td><td class="cde-bytes"><span class="b-sid">03 19</span> 02 08 <span class="b-pad">AA AA AA AA</span></td><td class="c-decoded"><b>ReadDTCInformation</b> by status mask</td></tr>
+          <tr><td class="c-time">09:40:27.260</td><td class="c-if">can0</td><td class="c-id">7E8</td><td class="c-dlc">8</td><td class="c-dir">←</td><td class="cde-bytes">07 <span class="b-pos">59 02</span> FF 01 71 00 08</td><td class="c-decoded"><b>positive</b> 1 DTC, P0171 confirmed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <figcaption class="frame-figure__caption">A diagnostic session on the live monitor. The selected response has P2* (bytes <code>01 F4</code>) highlighted by the byte decoder.</figcaption>
+</figure>
+
+<style>
+  .frame-figure { margin: 0; min-width: 0; }
+  .frame-figure__count { margin-left: auto; font: 400 11px/16px var(--font-mono); color: var(--ink-muted); }
+  .frame-figure__caption { margin-top: var(--space-5); font-size: 13px; line-height: 20px; color: var(--ink-muted); }
+  .frame-figure__caption code { color: var(--ink); }
+</style>

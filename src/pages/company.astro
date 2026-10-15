@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Section from '../components/Section.astro';
+import { SALES_EMAIL, COMPANY, salesMailto } from '../site';
+---
+
+<Base
+  title={`Company · ${COMPANY}`}
+  description={`${COMPANY} builds CAN Data Extract, tools for automotive diagnostics engineers who work on the CAN bus.`}
+>
+  <section class="page-head">
+    <div class="container">
+      <Eyebrow>Company</Eyebrow>
+      <h1 class="display-2 page-head__title">{COMPANY}</h1>
+      <p class="lede page-head__lede">
+        We build tools for the people under the dashboard: automotive software and test
+        engineers, reverse engineers, workshop tooling developers and ECU simulation teams.
+      </p>
+    </div>
+  </section>
+
+  <Section eyebrow="What we do" title="Tools that read the bus the way you do">
+    <div class="prose">
+      <p>
+        CAN Data Extract is our first product. It started as a set of tools we needed ourselves:
+        a simulator to test diagnostic tools without a car, a parser to turn traces into
+        simulator configs, and a scanner to find out what a car's ECUs answer. Those tools are
+        now one product, available as an online app and a desktop app.
+      </p>
+      <p>
+        We plan to add more tools in the same category. Each one joins the CAN Data Extract
+        line and works with the same traces, transforms and namespaces.
+      </p>
+      <p>
+        We write data the way engineers write it, and we show the raw bytes next to every decoded
+        value so you can check our work.
+      </p>
+    </div>
+  </Section>
+
+  <Section tone="sunken" eyebrow="Contact" title="Write to us">
+    <div class="contact">
+      <dl class="contact__facts">
+        <dt>Sales and support</dt>
+        <dd><a class="mono" href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a></dd>
+        <dt>Company</dt>
+        <dd>{COMPANY}</dd>
+        <dt>CVR</dt>
+        <dd><span class="todo">TODO: CVR number</span></dd>
+        <dt>Address</dt>
+        <dd><span class="todo">TODO: street, postcode, city</span><br />Denmark</dd>
+      </dl>
+      <div>
+        <p class="text-muted contact__copy">Tell us what car, ECU or bench setup you are working with. An engineer reads every message.</p>
+        <Button href={salesMailto('CAN Data Extract')} variant="primary" size="lg">Contact sales</Button>
+      </div>
+    </div>
+  </Section>
+</Base>
+
+<style>
+  .page-head { padding-block: var(--space-24) 0; }
+  .page-head__title { margin-top: var(--space-6); color: var(--ink); }
+  .page-head__lede { margin-top: var(--space-10); }
+
+  .prose p:first-child { margin-top: 0; }
+
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items: start; }
+  .contact__facts { display: grid; grid-template-columns: 160px 1fr; gap: var(--space-6) var(--space-8); }
+  .contact__facts dt { font: 500 10px/24px var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+  .contact__facts dd { margin: 0; color: var(--ink); }
+  .contact__copy { margin-bottom: var(--space-10); max-width: 48ch; }
+  @media (max-width: 800px) {
+    .contact { grid-template-columns: 1fr; }
+    .contact__facts { grid-template-columns: 1fr; gap: var(--space-2); }
+    .contact__facts dd { margin-bottom: var(--space-6); }
+  }
+</style>

@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Section from '../components/Section.astro';
+import PricingTier from '../components/PricingTier.astro';
+import { SALES_EMAIL, COMPANY, salesMailto } from '../site';
+---
+
+<Base
+  title="Pricing · CAN Data Extract"
+  description="CAN Data Extract Free, Pro and Enterprise. Every tier has every feature; the tiers differ in who can see your transforms and traces, and where the service runs."
+>
+  <section class="page-head">
+    <div class="container">
+      <Eyebrow>Pricing</Eyebrow>
+      <h1 class="display-2 page-head__title">Every feature on every tier.</h1>
+      <p class="lede page-head__lede">
+        The tiers differ in who can see your transforms and traces, and where CAN Data Extract
+        runs. Prices are not published yet. Write to sales with the tier and the number of
+        engineers, and we will send a quote.
+      </p>
+    </div>
+  </section>
+
+  <section class="tiers">
+    <div class="container tiers__grid">
+      <PricingTier
+        name="Free"
+        price={null}
+        summary="For public work, open research and trying CAN Data Extract on a real car."
+        items={[
+          [true, 'All features, online app and desktop app'],
+          [false, 'Transforms are public'],
+          [false, 'Traces are public'],
+        ]}
+      />
+      <PricingTier
+        name="Pro"
+        featured
+        summary="For engineers and teams whose transforms are their own work."
+        items={[
+          [true, 'All features, online app and desktop app'],
+          [true, 'Private transforms'],
+          [false, `Traces may be used by ${COMPANY} for testing and validation`],
+        ]}
+      />
+      <PricingTier
+        name="Enterprise"
+        summary="For OEMs, suppliers and labs that cannot let a trace leave the building."
+        items={[
+          [true, 'All features, online app and desktop app'],
+          [true, 'Private transforms'],
+          [true, 'Private traces, never used by us'],
+          [true, 'Self-hosted on your own servers'],
+        ]}
+      />
+    </div>
+  </section>
+
+  <Section eyebrow="Your data" title="What public and private mean">
+    <div class="data-rules">
+      <div>
+        <h3 class="h3">Public</h3>
+        <p class="text-muted">Anyone with a CAN Data Extract account can find, open and copy the item. Public traces and transforms help other engineers decode the same ECUs.</p>
+      </div>
+      <div>
+        <h3 class="h3">Used for testing and validation</h3>
+        <p class="text-muted">Traces stay private to your namespace, and {COMPANY} may replay them to test and validate CAN Data Extract. They are not published or shared with other customers.</p>
+      </div>
+      <div>
+        <h3 class="h3">Private</h3>
+        <p class="text-muted">Only members of your namespace can see the item. On Enterprise self-hosted, the data never reaches our servers.</p>
+      </div>
+    </div>
+    <p class="terms-link">The full rules are in the <a href="/terms/">terms of service</a>.</p>
+  </Section>
+
+  <Section tone="sunken" eyebrow="Questions" title="Before you write to us">
+    <dl class="faq">
+      <dt class="h3">Is the desktop app included?</dt>
+      <dd>Yes. Every tier includes the online app and the desktop app, with recording, scanning and ECU simulation.</dd>
+      <dt class="h3">Can I move from Free to Pro later?</dt>
+      <dd>Yes. Anything that was public while you were on Free may already have been opened or copied by others, so treat it as published.</dd>
+      <dt class="h3">What does self-hosted need?</dt>
+      <dd>Servers you run. We send the requirements with the Enterprise quote.</dd>
+      <dt class="h3">How do I get a price?</dt>
+      <dd>Write to <a class="mono" href={salesMailto('CAN Data Extract pricing')}>{SALES_EMAIL}</a> with the tier, the number of engineers and, for Enterprise, where you want it to run.</dd>
+    </dl>
+  </Section>
+</Base>
+
+<style>
+  .page-head { padding-block: var(--space-24) 0; }
+  .page-head__title { margin-top: var(--space-6); max-width: 24ch; color: var(--ink); }
+  .page-head__lede { margin-top: var(--space-10); }
+
+  .tiers { padding-top: var(--space-16); }
+  .tiers__grid { display: grid; gap: var(--space-8); grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 960px) { .tiers__grid { grid-template-columns: 1fr; max-width: 520px; } }
+
+  .data-rules { display: grid; gap: var(--space-12); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .data-rules .text-muted { margin-top: var(--space-4); }
+  .terms-link { margin-top: var(--space-12); color: var(--ink-muted); }
+
+  .faq { max-width: 70ch; }
+  .faq dt:not(:first-child) { margin-top: var(--space-12); }
+  .faq dd { margin: var(--space-4) 0 0; color: var(--ink-muted); }
+</style>

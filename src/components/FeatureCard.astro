@@ -1,0 +1,36 @@
+---
+// One capability: optional icon, heading, body, optional mono spec line.
+interface Props {
+  title: string;
+  spec?: string;
+  class?: string;
+}
+const { title, spec, class: className } = Astro.props;
+---
+
+<div class={['feature', className].filter(Boolean).join(' ')}>
+  {Astro.slots.has('icon') && <div class="feature__icon" aria-hidden="true"><slot name="icon" /></div>}
+  <h3 class="h3">{title}</h3>
+  <p class="feature__body"><slot /></p>
+  {spec && <p class="feature__spec">{spec}</p>}
+</div>
+
+<style>
+  .feature {
+    display: flex; flex-direction: column; gap: var(--space-5);
+    padding: var(--space-10);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-3);
+  }
+  .feature__icon { width: 20px; height: 20px; color: var(--trace); }
+  .feature__icon :global(svg) { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .feature__body { color: var(--ink-muted); font-size: 15px; line-height: 24px; }
+  .feature__spec {
+    margin-top: auto;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--line);
+    font: 400 12px/18px var(--font-mono);
+    color: var(--ink);
+  }
+</style>

@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Section from '../components/Section.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+import { APP_URL } from '../site';
+
+// [feature, online app, desktop app]
+const compare: Array<[string, boolean, boolean]> = [
+  ['Frame table, ISO-TP reassembly, byte decoder', true, true],
+  ['CEL transforms, saved and shared', true, true],
+  ['Collections, ECU trees, team namespaces', true, true],
+  ['Import candump, PCAN TRC, VCDS, ODIS and MF4 traces', true, true],
+  ['Sign in with Google or Microsoft Entra ID', true, true],
+  ['Record from a local CAN adapter', false, true],
+  ['Scan a car: VIN, ECUs, DIDs, DTCs', false, true],
+  ['Simulate ECUs on a CAN interface', false, true],
+  ['Build simulator configs from traces', false, true],
+  ['Stream captures to the cloud', false, true],
+];
+---
+
+<Base
+  title="Product: online app and desktop app · CAN Data Extract"
+  description="CAN Data Extract runs in the browser at app.candataextract.com and as a desktop app for Windows, macOS and Linux. The desktop app adds recording from CAN hardware, car scanning and ECU simulation."
+>
+  <section class="page-head">
+    <div class="container">
+      <Eyebrow>Product</Eyebrow>
+      <h1 class="display-2 page-head__title">One tool, in the browser and on your bench.</h1>
+      <p class="lede page-head__lede">
+        The online app and the desktop app are the same CAN Data Extract. Use the online app to
+        analyse and share traces. Use the desktop app when there is a CAN adapter on your desk and
+        a car or an ECU on the other end.
+      </p>
+    </div>
+  </section>
+
+  <Section id="online" eyebrow="Online app" title="Analyse and share in the browser" lede="At app.candataextract.com. Your team's traces, transforms and simulator configs in one place.">
+    <div class="rows">
+      <FeatureRow shot="monitor" spec="24 px rows · virtualised · follow live">
+        A frame table built for high bus load: time, interface, ID, DLC, direction, payload and
+        decoded text in fixed columns. It virtualises, so a long capture scrolls as fast as a short one.
+      </FeatureRow>
+      <FeatureRow shot="isotp" spec="First, consecutive and flow-control frames" reverse>
+        Multi-frame requests and responses are stitched back into whole messages, so a 20-byte
+        VIN read is one line, not four frames.
+      </FeatureRow>
+      <FeatureRow shot="decoder" spec="Frame literal · byte cells · decoded fields">
+        One payload shown three ways that stay in step. Hover a field to see its bytes, hover a
+        byte to see its field. The arithmetic is written out.
+      </FeatureRow>
+      <FeatureRow shot="transforms" spec="Common Expression Language · saved per namespace" reverse>
+        Write an expression that picks a signal out of a payload, see every match highlighted in
+        the table, and save it for the team.
+      </FeatureRow>
+      <FeatureRow shot="collections" spec="Traces grouped by vehicle, ECU, session">
+        Group traces by car and session, browse the ECUs a car exposes, and keep the naming data
+        that turns <code>7E0</code> into "Engine".
+      </FeatureRow>
+      <FeatureRow shot="teams" spec="Namespaces · invites · Google · Microsoft Entra ID" reverse>
+        Private and team namespaces with invite-based access. Sign in with your company's Google
+        or Microsoft Entra ID account.
+      </FeatureRow>
+    </div>
+  </Section>
+
+  <Section id="desktop" tone="sunken" eyebrow="Desktop app" title="Everything above, plus the hardware" lede="For Windows, macOS and Linux. It opens your CAN adapter directly.">
+    <div class="rows">
+      <FeatureRow shot="record" spec="SocketCAN on Linux · PCAN on macOS and Windows">
+        Capture frames from a USB CAN adapter plugged into a car or a bench harness, at the
+        bitrate you set. Save locally or stream the capture to your namespace in the cloud.
+      </FeatureRow>
+      <FeatureRow shot="scan" spec="VIN · ECU discovery · DIDs · DTCs" reverse>
+        Connect to a car, read its VIN, find the manufacturer's ECUs, and read their data
+        identifiers and fault codes in one pass.
+      </FeatureRow>
+      <FeatureRow shot="simulate" spec="One or many ECUs · YAML · CAN and CAN FD">
+        Answer diagnostic requests as one or many ECUs on a real CAN interface. Sessions,
+        timing, padding and CAN FD framing are configurable per ECU.
+      </FeatureRow>
+      <FeatureRow shot="sim-config" spec="candump · PCAN TRC · VCDS · ODIS · MF4" reverse>
+        Turn a recorded session into a simulator config. Request and response IDs are paired
+        automatically, and ECU names are filled in from the naming data.
+      </FeatureRow>
+    </div>
+  </Section>
+
+  <Section id="compare" eyebrow="Compare" title="Which one do you need?">
+    <div class="scroll-x compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th scope="col">Feature</th><th scope="col">Online app</th><th scope="col">Desktop app</th></tr>
+        </thead>
+        <tbody>
+          {compare.map(([feature, web, desk]) => (
+            <tr>
+              <th scope="row">{feature}</th>
+              {[web, desk].map((ok) => (
+                <td>
+                  {ok
+                    ? <span class="g g--ok" aria-label="Included">●</span>
+                    : <span class="compare__no" aria-label="Not included">–</span>}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <div class="compare-actions">
+      <Button href={APP_URL} variant="primary" size="lg">Open the online app</Button>
+      <Button href="/download/" size="lg">Get the desktop app</Button>
+    </div>
+  </Section>
+</Base>
+
+<style>
+  .page-head { padding-block: var(--space-24) 0; }
+  .page-head__title { margin-top: var(--space-6); max-width: 24ch; color: var(--ink); }
+  .page-head__lede { margin-top: var(--space-10); }
+
+
+  .compare-wrap { border: 1px solid var(--line-strong); border-radius: var(--radius-3); }
+  .compare { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .compare th, .compare td { padding: var(--space-6) var(--space-8); border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+  .compare tbody tr:last-child > * { border-bottom: 0; }
+  .compare thead th { background: var(--surface-sunken); font: 500 10px/14px var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+  .compare tbody th { font-weight: 400; color: var(--ink); }
+  .compare td { width: 140px; text-align: center; }
+  .compare thead th:not(:first-child) { text-align: center; }
+  .compare .g { font-size: 10px; }
+  .compare__no { color: var(--ink-faint); }
+  .compare-actions { margin-top: var(--space-12); display: flex; gap: var(--space-6); flex-wrap: wrap; }
+</style>

@@ -1,0 +1,53 @@
+---
+import { salesMailto } from '../site';
+
+// One pricing tier. `items` are [included, text] pairs, drawn with ● (included) or ✕ (not included).
+interface Props {
+  name: string;
+  summary: string;
+  // null hides the price line but keeps its space, so the tiers stay aligned.
+  price?: string | null;
+  items: Array<[boolean, string]>;
+  featured?: boolean;
+}
+const { name, summary, price = 'Price on request', items, featured = false } = Astro.props;
+---
+
+<article class={['tier', featured && 'tier--featured'].filter(Boolean).join(' ')} aria-labelledby={`tier-${name}`}>
+  <header class="tier__head">
+    <h2 id={`tier-${name}`} class="tier__name">{name}</h2>
+    <p class="tier__summary">{summary}</p>
+    {price === null
+      ? <p class="tier__price tier__price--none" aria-hidden="true">&nbsp;</p>
+      : <p class="tier__price">{price}</p>}
+  </header>
+  <ul class="glyph-list tier__items">
+    {items.map(([ok, text]) => (
+      <li>
+        <span class={`g ${ok ? 'g--ok' : 'g--fault'}`} aria-label={ok ? 'Included' : 'Not included'}>{ok ? '●' : '✕'}</span>
+        <span>{text}</span>
+      </li>
+    ))}
+  </ul>
+  <a
+    class={['cde-btn', 'cde-btn--lg', 'tier__cta', featured && 'cde-btn--primary'].filter(Boolean).join(' ')}
+    href={salesMailto(`CAN Data Extract ${name}`)}
+  >Contact sales</a>
+</article>
+
+<style>
+  .tier {
+    display: flex; flex-direction: column; gap: var(--space-10);
+    padding: var(--space-12) var(--space-10);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-3);
+  }
+  .tier--featured { border-color: var(--trace); box-shadow: inset 0 0 0 1px var(--trace); }
+  .tier__name { font: 700 24px/28px var(--font-display); color: var(--ink); }
+  .tier__summary { margin-top: var(--space-5); color: var(--ink-muted); font-size: 15px; line-height: 24px; min-height: 48px; }
+  .tier__price { margin-top: var(--space-8); font: 600 14px/20px var(--font-mono); color: var(--ink); }
+  .tier__price--none { visibility: hidden; }
+  .tier__items { flex: 1; font-size: 14px; line-height: 22px; color: var(--ink-muted); padding-top: var(--space-10); border-top: 1px solid var(--line); }
+  .tier__cta { justify-content: center; }
+</style>

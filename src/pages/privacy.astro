@@ -1,0 +1,49 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { SALES_EMAIL, COMPANY } from '../site';
+---
+
+<Legal
+  title="Privacy policy · CAN Data Extract"
+  heading="Privacy policy"
+  description={`How ${COMPANY} handles personal data on candataextract.com and in CAN Data Extract.`}
+  updated="2026-10-16"
+>
+  <h2>Who we are</h2>
+  <p>
+    {COMPANY} (CVR <span class="todo">TODO</span>), <span class="todo">TODO: address</span>, Denmark,
+    is the data controller for the personal data described here. Contact us at
+    <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a>.
+  </p>
+
+  <h2>This website</h2>
+  <p>
+    candataextract.com is a static website. It sets no cookies and runs no analytics. Your
+    browser stores your light or dark theme choice locally; it is never sent to us. The site is
+    hosted on GitHub Pages, which logs IP addresses for security purposes.
+    <span class="todo">TODO: confirm hosting and any analytics before publishing</span>
+  </p>
+
+  <h2>CAN Data Extract accounts</h2>
+  <p>When you sign in to app.candataextract.com we process:</p>
+  <ul>
+    <li>Your name and email address from Google, Microsoft Entra ID or the account you create.</li>
+    <li>Session and device data needed to keep you signed in.</li>
+    <li>The traces, transforms, collections and simulator configs you upload or create.</li>
+  </ul>
+  <p><span class="todo">TODO: legal basis, retention periods, sub-processors, hosting location</span></p>
+
+  <h2>Traces and vehicle data</h2>
+  <p>
+    Traces can contain a vehicle identification number (VIN), which may be personal data when it
+    can be linked to a person. Who can see your traces depends on your plan; see the
+    <a href="/terms/">terms of service</a> and <a href="/pricing/">pricing</a>.
+  </p>
+
+  <h2>Your rights</h2>
+  <p>
+    Under the GDPR you have the right to access, correct, delete and export your personal data,
+    and to object to or restrict its processing. Write to <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a>.
+    You can complain to the Danish Data Protection Agency (Datatilsynet).
+  </p>
+</Legal>
