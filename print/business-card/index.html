@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Business card</title>
+<link rel="stylesheet" href="../../design-system/tokens.css">
+<style>
+  /*
+    Danish standard business card: 85 × 55 mm trim.
+    Print shops want 3 mm bleed on every side, so the page is 91 × 61 mm.
+    With class "marks" on <body> a 3 mm slug is added for crop marks (97 × 67 mm).
+    Keep text inside the 5 mm safe margin from the trim edge.
+  */
+  :root {
+    --trim-w: 85mm;
+    --trim-h: 55mm;
+    --bleed: 3mm;
+    --slug: 0mm;
+    --safe: 5mm;
+    --inset: calc(var(--slug) + var(--bleed) + var(--safe));
+  }
+  body.marks { --slug: 3mm; }
+
+  @page { size: 91mm 61mm; margin: 0; }
+
+  html, body { margin: 0; padding: 0; background: var(--surface-sunken); }
+  body { font-family: var(--font-sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @media print { html, body { background: none; } }
+
+  /* On screen, lay the two sides out side by side for proofing. */
+  .sheet { display: flex; gap: var(--space-12); padding: var(--space-12); flex-wrap: wrap; }
+  @media print { .sheet { display: block; padding: 0; gap: 0; } }
+
+  .card {
+    position: relative;
+    width: calc(var(--trim-w) + 2 * var(--bleed) + 2 * var(--slug));
+    height: calc(var(--trim-h) + 2 * var(--bleed) + 2 * var(--slug));
+    overflow: hidden;
+    break-after: page;
+    page-break-after: always;
+  }
+  .card:last-child { break-after: auto; page-break-after: auto; }
+
+  /* The printed ground runs to the bleed edge. */
+  .ground {
+    position: absolute;
+    inset: var(--slug);
+    background: var(--paper);
+  }
+  .card.back .ground { background: var(--ink-fixed); }
+
+  .content {
+    position: absolute;
+    inset: var(--inset);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  /* Front */
+  .lockup { height: 4.2mm; display: block; }
+  .who { display: flex; flex-direction: column; gap: 0; }
+  .name {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 10pt;
+    line-height: 12pt;
+    color: var(--ink-fixed);
+    letter-spacing: normal;
+  }
+  .role {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 7.5pt;
+    line-height: 10pt;
+    color: var(--ink-muted);
+    margin-bottom: 3mm;
+  }
+  .contact {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 7pt;
+    line-height: 10.5pt;
+    color: var(--ink-fixed);
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .contact .key {
+    display: inline-block;
+    width: 9mm;
+    color: var(--ink-muted);
+  }
+
+  /* Back: the mark on an ink ground, and the canonical UDS exchange. */
+  .card.back .mark { height: 9mm; display: block; }
+  .frames {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 8pt;
+    line-height: 12pt;
+    color: var(--ink);
+    white-space: pre;
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .frames .dir { color: var(--ink-muted); font-weight: 400; }
+  .frames .id { color: var(--byte-id); }
+  .frames .svc { color: var(--byte-service); }
+  .frames .data { color: var(--byte-data); font-weight: 400; }
+  .frames .hash { color: var(--ink-muted); font-weight: 400; }
+
+  /* Crop marks sit in the slug, outside the bleed, aligned with the trim. */
+  .cropmarks { display: none; position: absolute; inset: 0; width: 100%; height: 100%; }
+  body.marks .cropmarks { display: block; }
+  .cropmarks line { stroke: var(--ink-fixed); stroke-width: 0.1mm; }
+  .card.back .cropmarks line { stroke: var(--ink-fixed); }
+
+  /* Screen-only proof chrome */
+  .note { font-family: var(--font-sans); font-size: 12px; line-height: 16px; color: var(--ink-muted); padding: 0 var(--space-12) var(--space-12); }
+  @media print { .note { display: none; } }
+  @media screen { .card { box-shadow: var(--shadow-pop); } }
+  /* ?side=front|back: one card, scaled so a 2150 × 1441 px window is 600 dpi. */
+  body.proof { background: none; }
+  body.proof .sheet { padding: 0; gap: 0; transform: scale(6.25); transform-origin: 0 0; }
+  body.proof .card { box-shadow: none; }
+  body.proof .note { display: none; }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <section class="card front" aria-label="Front">
+    <div class="ground"></div>
+    <div class="content">
+      <img class="lockup" src="../../design-system/assets/Logos/cde-lockup.svg" alt="CAN Data Extract">
+      <div class="who">
+        <div class="name">Troels Liebe Bentsen</div>
+        <div class="role">CEO</div>
+        <ul class="contact">
+          <li><span class="key">tel</span>+45 51 51 18 38</li>
+          <li><span class="key">mail</span>tlb@candataextract.com</li>
+          <li><span class="key">web</span>candataextract.com</li>
+        </ul>
+      </div>
+    </div>
+    <svg class="cropmarks" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0"     y1="6mm"  x2="2.5mm" y2="6mm"/>  <line x1="6mm"  y1="0"     x2="6mm"  y2="2.5mm"/>
+      <line x1="100%"  y1="6mm"  x2="94.5mm" y2="6mm"/> <line x1="91mm" y1="0"     x2="91mm" y2="2.5mm"/>
+      <line x1="0"     y1="61mm" x2="2.5mm" y2="61mm"/> <line x1="6mm"  y1="67mm"  x2="6mm"  y2="64.5mm"/>
+      <line x1="100%"  y1="61mm" x2="94.5mm" y2="61mm"/><line x1="91mm" y1="67mm"  x2="91mm" y2="64.5mm"/>
+    </svg>
+  </section>
+
+  <section class="card back" data-theme="dark" aria-label="Back">
+    <div class="ground"></div>
+    <div class="content">
+      <img class="mark" src="../../design-system/assets/Logos/cde-mark-dark.svg" alt="">
+      <pre class="frames"><span class="dir">→</span> <span class="id">7E0</span><span class="hash">#</span><span class="data">02</span> <span class="svc">10</span> <span class="data">03</span>
+<span class="dir">←</span> <span class="id">7E8</span><span class="hash">#</span><span class="data">06</span> <span class="svc">50</span> <span class="data">03 00 32 01 F4</span></pre>
+    </div>
+    <svg class="cropmarks" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0"     y1="6mm"  x2="2.5mm" y2="6mm"/>  <line x1="6mm"  y1="0"     x2="6mm"  y2="2.5mm"/>
+      <line x1="100%"  y1="6mm"  x2="94.5mm" y2="6mm"/> <line x1="91mm" y1="0"     x2="91mm" y2="2.5mm"/>
+      <line x1="0"     y1="61mm" x2="2.5mm" y2="61mm"/> <line x1="6mm"  y1="67mm"  x2="6mm"  y2="64.5mm"/>
+      <line x1="100%"  y1="61mm" x2="94.5mm" y2="61mm"/><line x1="91mm" y1="67mm"  x2="91mm" y2="64.5mm"/>
+    </svg>
+  </section>
+
+</div>
+<p class="note">Trim 85 × 55 mm, bleed 3 mm, safe margin 5 mm. Render the PDFs with scripts/render-business-card.sh. Open with ?marks for crop marks.</p>
+<script>
+  // ?marks adds a 3 mm slug with crop marks; the page grows to 97 × 67 mm.
+  const side = new URLSearchParams(location.search).get('side');
+  if (side) {
+    document.body.classList.add('proof');
+    for (const c of document.querySelectorAll('.card')) c.hidden = !c.classList.contains(side);
+  }
+  if (location.search.includes('marks')) {
+    document.body.classList.add('marks');
+    const st = document.createElement('style');
+    st.textContent = '@page { size: 97mm 67mm; margin: 0; }';
+    document.head.appendChild(st);
+  }
+</script>
+</body>
+</html>

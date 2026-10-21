@@ -117,3 +117,7 @@ dist
 
 # Astro
 .astro/
+
+# Rendered print output; regenerate with scripts/render-business-card.sh
+print/**/*.pdf
+print/**/*.png
